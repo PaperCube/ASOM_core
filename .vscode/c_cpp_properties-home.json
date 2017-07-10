@@ -1,0 +1,19 @@
+{
+    "configurations": [
+        {
+            "name": "Arduino",
+            "includePath": [
+                "E:\\Applications\\Development\\Arduino\\arduino-1.8.2\\hardware\\arduino\\avr\\cores\\arduino",
+                "E:\\Applications\\Development\\Arduino\\arduino-1.8.2\\libraries\\TimerOne",
+                "E:\\Applications\\Development\\Arduino\\arduino-1.8.2\\hardware\\arduino\\avr\\libraries\\EEPROM\\src"
+            ],
+            "browse": {
+                "limitSymbolsToIncludedHeaders": false,
+                "path": [
+                    "E:\\Applications\\Development\\Arduino\\arduino-1.8.2\\hardware\\arduino\\avr\\cores\\arduino",
+                    "E:\\Applications\\Development\\Arduino\\arduino-1.8.2\\hardware\\arduino\\avr\\libraries\\EEPROM\\src"
+                ]
+            }
+        }
+    ]
+}

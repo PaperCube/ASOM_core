@@ -1,0 +1,5 @@
+{
+    "port": "COM3",
+    "board": "arduino:sam:arduino_due_x",
+    "sketch": "MultichannelGreySensor.ino"
+}
