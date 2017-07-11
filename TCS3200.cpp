@@ -2,7 +2,6 @@
 #include <Arduino.h>
 #include "sout.h"
 #include "mathutil.h"
-#include <EEPROM.h>
 
 namespace util
 {
@@ -14,14 +13,6 @@ static int wbcfgHeaderAddr = 0; //These two declaraction are used when balance c
 
 TCS3200Controller::TCS3200Controller()
 {
-    // int idx = wbcfgHeaderAddr;
-    // if (EEPROM.read(idx++) == blcfgLength)
-    //     EEPROM.get(idx, wbcfg);
-
-    // idx += blcfgLength;
-
-    // if (EEPROM.read(idx++) == blcfgLength)
-    //     EEPROM.get(idx, bbcfg);
 
 }
 
@@ -171,7 +162,7 @@ void TCS3200Controller::test()
 {
 }
 
-long TCS3200Controller::readRawValue(TCS3200Controller::FilterMode filterMode, const int repeatForAverage = 1)
+long TCS3200Controller::readRawValue(TCS3200Controller::FilterMode filterMode, const int repeatForAverage)
 {
     setColorFilterMode(filterMode);
     int sum = 0;
@@ -182,7 +173,7 @@ long TCS3200Controller::readRawValue(TCS3200Controller::FilterMode filterMode, c
     return sum / repeatForAverage;
 }
 
-double TCS3200Controller::readRawFreq(TCS3200Controller::FilterMode fMode, const int repeatForAverage = 1)
+double TCS3200Controller::readRawFreq(TCS3200Controller::FilterMode fMode, const int repeatForAverage)
 {
     return 1000.0 / readRawValue(fMode, repeatForAverage);
 }

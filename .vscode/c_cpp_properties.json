@@ -5,15 +5,18 @@
             "includePath": [
                 "C:\\Users\\Mr.GZT\\Desktop\\arduino-1.8.2-windows\\arduino-1.8.2\\hardware\\arduino\\avr\\cores\\arduino",
                 "C:\\Users\\Mr.GZT\\Desktop\\arduino-1.8.2-windows\\arduino-1.8.2\\libraries\\TimerOne",
-                "C:\\Users\\Mr.GZT\\Desktop\\arduino-1.8.2-windows\\arduino-1.8.2\\hardware\\arduino\\avr\\libraries\\EEPROM\\src"
+                "C:\\Users\\Mr.GZT\\Desktop\\arduino-1.8.2-windows\\arduino-1.8.2\\hardware\\arduino\\avr\\libraries\\EEPROM\\src",
+                "C:\\Users\\Mr.GZT\\Desktop\\arduino-1.8.2-windows\\arduino-1.8.2\\libraries\\Servo\\src"
             ],
             "browse": {
                 "limitSymbolsToIncludedHeaders": false,
                 "path": [
                     "C:\\Users\\Mr.GZT\\Desktop\\arduino-1.8.2-windows\\arduino-1.8.2\\hardware\\arduino\\avr\\cores\\arduino",
-                    "C:\\Users\\Mr.GZT\\Desktop\\arduino-1.8.2-windows\\arduino-1.8.2\\hardware\\arduino\\avr\\libraries\\EEPROM\\src"
+                    "C:\\Users\\Mr.GZT\\Desktop\\arduino-1.8.2-windows\\arduino-1.8.2\\hardware\\arduino\\avr\\libraries\\EEPROM\\src",
+                    "C:\\Users\\Mr.GZT\\Desktop\\arduino-1.8.2-windows\\arduino-1.8.2\\libraries\\Servo\\src"
                 ]
-            }
+            },
+            "intelliSenseMode": "msvc-x64"
         },
         {
             "name": "Win32",
@@ -25,7 +28,8 @@
                 "path": [
                     "C:\\Users\\Mr.GZT\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\sam\\1.6.11\\cores\\arduino"
                 ]
-            }
+            },
+            "intelliSenseMode": "msvc-x64"
         }
     ]
 }

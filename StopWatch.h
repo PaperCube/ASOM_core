@@ -12,7 +12,7 @@ class AbstractStopWatch
     virtual unsigned long get() {}
 
   public:
-    virtual AbstractStopWatch();
+    AbstractStopWatch();
     virtual unsigned long mark();
     virtual unsigned long peek();
 };
