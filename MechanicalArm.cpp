@@ -1,11 +1,11 @@
-#include <MechanicalArm.h>
+#include "MechanicalArm.h"
 #include <Arduino.h>
 
 MechanicalArm::MechanicalArm(int vPin,
                              int hPinL,
                              int hPinR) : vertical(vPin),
                                           horizontalL(hPinL),
-                                          horizontalL(hPinR)
+                                          horizontalR(hPinR)
 {
 }
 

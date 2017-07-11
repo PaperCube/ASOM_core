@@ -3,18 +3,18 @@
 
 class MechanicalArm
 {
-  private:
-    const int horizontalDegree = 45;
-  public:
-    int vertical = 0, horizontalL = 0, horizontalR = 0;
-    Servo svrV, svrHL, svrHR;
-    MechanicalArm(int);
-    ~MechanicalArm();
+private:
+  const int horizontalDegree = 45;
 
-    void init();
+public:
+  int vertical = 0, horizontalL = 0, horizontalR = 0;
+  Servo svrV, svrHL, svrHR;
+  MechanicalArm(int, int, int);
 
-    void putUp();
-    void putDown();
-    void grab();
-    void release();
-}
+  void init();
+
+  void putUp();
+  void putDown();
+  void grab();
+  void release();
+};

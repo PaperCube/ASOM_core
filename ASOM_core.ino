@@ -2,10 +2,12 @@
 #include "sout.h"
 #include "LineTracker.h"
 #include "Motor.h"
+#include "MechanicalArm.h"
 
 LaserModule *lm = nullptr;
 Motor *motors[2] = {nullptr, nullptr};
 LineTracker *tracker = nullptr;
+MechanicalArm arm(0, 0, 0); //TODO fill in pins
 
 using namespace serial;
 void setup()
