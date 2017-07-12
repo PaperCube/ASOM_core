@@ -43,6 +43,22 @@ void LineTracker::host(bool (*breakCondition)())
     r->setSpeed(0);
 }
 
+void LineTracker::goStraight(int lines)
+{
+    bool isOnline = false;
+    int lineCrossed = 0;
+    host([&]() -> bool {
+        if (lm->isBlack(0) && lm->isBlack(7))
+        {
+            isOnline == true;
+        }
+        if (isOnline)
+        {
+            lineCrossed++;
+        }
+    });
+}
+
 void LineTracker::forceStraight()
 {
     l->setSpeed(standard);
