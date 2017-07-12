@@ -85,7 +85,7 @@ void LineTracker::turnRelatively(int cnt, int speed)
 
     do
     {
-        if (lm->isBlack(0) && lm->isBlack(7))
+        if (lm->isBlack(3))
         {
             isOnline == true;
         }
