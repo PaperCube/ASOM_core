@@ -18,36 +18,45 @@ void LineTracker::setStandard(int standard, double sensitivity)
 
     sdebug << "Standard speed is set to " << this->standard << endl;
 }
-
-void LineTracker::host(bool (*breakCondition)())
+void LineTracker::host()
 {
-    int speedL, speedR;
-    while (breakCondition == nullptr || !breakCondition())
+    while (true)
     {
-        double ct = lm->majorityInMicros(10 * 1000);
-        speedL = standard + floating * ct;
-        speedR = standard - floating * ct;
-
-        if (lm->interference > interferenceThreshold)
-        {
-            double veloReductionRate = 1.0 - velocityReduction;
-            speedL *= veloReductionRate;
-            speedR *= veloReductionRate;
-        }
-
-        l->setSpeed(speedL);
-        r->setSpeed(speedR);
+        update();
     }
+    stop();
+}
 
+void LineTracker::stop()
+{
     l->setSpeed(0);
     r->setSpeed(0);
+}
+
+void LineTracker::update()
+{
+    int speedL = 0, speedR = 0;
+    double ct = lm->majorityInMicros(10 * 1000);
+    speedL = standard + floating * ct;
+    speedR = standard - floating * ct;
+
+    if (lm->interference > interferenceThreshold)
+    {
+        double veloReductionRate = 1.0 - velocityReduction;
+        speedL *= veloReductionRate;
+        speedR *= veloReductionRate;
+    }
+
+    l->setSpeed(speedL);
+    r->setSpeed(speedR);
 }
 
 void LineTracker::goStraight(int lines)
 {
     bool isOnline = false;
     int lineCrossed = 0;
-    host([&]() -> bool {
+    do
+    {
         if (lm->isBlack(0) && lm->isBlack(7))
         {
             isOnline == true;
@@ -58,8 +67,16 @@ void LineTracker::goStraight(int lines)
             isOnline = false;
         }
 
-        return lineCrossed >= lines;
-    });
+        update();
+    } while (lineCrossed >= lines);
+}
+
+bool goStraightHandler()
+{
+}
+
+void LineTracker::turnRelatively(int count)
+{
 }
 
 void LineTracker::forceStraight()

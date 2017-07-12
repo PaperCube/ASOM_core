@@ -18,9 +18,13 @@ class LineTracker
 
 	LineTracker(Motor *, Motor *, LaserModule *);
 	void setStandard(int, double);
-	void host(bool (*)() = nullptr);
+	void host();
+	// void host(bool (*)());
+	void stop();
 	void goStraight(int = -1);
+	void turnRelatively(int);
 	void forceStraight();
+	void update();
 	LaserModule *laser()
 	{
 		return lm;
