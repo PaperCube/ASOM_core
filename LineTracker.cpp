@@ -71,12 +71,33 @@ void LineTracker::goStraight(int lines)
     } while (lineCrossed >= lines);
 }
 
-bool goStraightHandler()
+void LineTracker::turnRelatively(int cnt, int speed)
 {
-}
+    int directionFlag = (cnt > 0) ? 1 : -1;
+    if (cnt == 0)
+        return;
 
-void LineTracker::turnRelatively(int count)
-{
+    bool isOnline = false;
+    int lineCrossed = 0;
+
+    l->setSpeed(speed * directionFlag);
+    r->setSpeed(speed * directionFlag);
+
+    do
+    {
+        if (lm->isBlack(0) && lm->isBlack(7))
+        {
+            isOnline == true;
+        }
+        else if (isOnline)
+        {
+            lineCrossed++;
+            isOnline = false;
+        }
+
+    } while (lineCrossed >= cnt);
+
+    stop();
 }
 
 void LineTracker::forceStraight()

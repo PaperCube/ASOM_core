@@ -22,7 +22,7 @@ class LineTracker
 	// void host(bool (*)());
 	void stop();
 	void goStraight(int = -1);
-	void turnRelatively(int);
+	void turnRelatively(int, int = 50);
 	void forceStraight();
 	void update();
 	LaserModule *laser()
