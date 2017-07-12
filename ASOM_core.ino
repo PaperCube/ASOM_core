@@ -20,7 +20,7 @@ void setup()
     motors[0] = new Motor(4, 5);
     motors[1] = new Motor(7, 6);
 
-    tracker = new LineTracker(motors[0], motors[1], lm);
+    tracker = new LineTracker(motors[0], motors[1], lm, &arm);
     tracker->setStandard(65, 0.45);
     tracker->interferenceThreshold = 0.65;
     tracker->velocityReduction = 0.0;

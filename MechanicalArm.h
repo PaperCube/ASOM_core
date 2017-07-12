@@ -1,12 +1,15 @@
 #include <Arduino.h>
 #include <Servo.h>
 
+#ifndef MECHANICAL_ARM_H
+#define MECHANICAL_ARM_H
+
 class MechanicalArm
 {
-  private:
+private:
 	const int horizontalDegree = 45;
 
-  public:
+public:
 	int vertical = 0, horizontalL = 0, horizontalR = 0;
 	Servo svrV, svrHL, svrHR;
 	MechanicalArm(int, int, int);
@@ -18,3 +21,5 @@ class MechanicalArm
 	void grab();
 	void release();
 };
+
+#endif

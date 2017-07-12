@@ -1,13 +1,19 @@
 #include "LineTracker.h"
 #include "LaserModule.h"
 #include "sout.h"
+#include "MechanicalArm.h"
+#include "TCS3200.h"
+#include "colortypes.h"
+
 using namespace serial;
 
 LineTracker::LineTracker(Motor *lmtr,
                          Motor *rmtr,
-                         LaserModule *lmptr) : l(lmtr),
-                                               r(rmtr),
-                                               lm(lmptr)
+                         LaserModule *lmptr,
+                         MechanicalArm *arm_ptr) : l(lmtr),
+                                                   r(rmtr),
+                                                   lm(lmptr),
+                                                   arm(arm_ptr)
 {
 }
 
@@ -18,13 +24,31 @@ void LineTracker::setStandard(int standard, double sensitivity)
 
     sdebug << "Standard speed is set to " << this->standard << endl;
 }
+
 void LineTracker::host()
 {
-    while (true)
-    {
-        update();
-    }
-    stop();
+    // while (true)
+    // {
+    //     update();
+    // }
+    // stop();
+    //=======above: only track lines.
+    // colorSensor->performBalance();
+    // goStraight(3);
+    // turnRelatively(-2);
+    // goStraight(1);
+
+    // arm->grab();
+    // arm->putUp();
+    // arm->release();
+
+    // ColorType color = colorSensor->measureColor();
+    // shake();
+    // goStraight(1);
+
+    // //put object
+    // arm->putDown();
+
 }
 
 void LineTracker::stop()
@@ -105,8 +129,8 @@ void LineTracker::calibrate()
     delay(500);
     while (true)
     {
-        bool isLBlack = isBlack(0);
-        bool isRBlack = isBlack(7);
+        bool isLBlack = lm->isBlack(0);
+        bool isRBlack = lm->isBlack(7);
         if (isLBlack && isRBlack)
         {
             stop();
@@ -133,6 +157,17 @@ void LineTracker::changeAll(int speed)
 {
     l->setSpeed(speed);
     r->setSpeed(speed);
+}
+
+void LineTracker::shake(int cnt)
+{
+    for (int i = 0; i < cnt; i++)
+    {
+        changeAll(100);
+        delay(100);
+        changeAll(-100);
+        delay(100);
+    }
 }
 
 void LineTracker::forceStraight()

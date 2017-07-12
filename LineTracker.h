@@ -3,6 +3,8 @@
 
 #include "Motor.h"
 #include "LaserModule.h"
+#include "MechanicalArm.h"
+#include "TCS3200.h"
 
 class LineTracker
 {
@@ -15,9 +17,11 @@ class LineTracker
   public:
 	double interferenceThreshold = 0.45;
 	double velocityReduction = 0.15;
+	MechanicalArm *arm;
+	TCS3200Controller *colorSensor;
 	int minPower = 50;
 
-	LineTracker(Motor *, Motor *, LaserModule *);
+	LineTracker(Motor *, Motor *, LaserModule *, MechanicalArm*);
 	void setStandard(int, double);
 	void host();
 	// void host(bool (*)());
@@ -27,6 +31,7 @@ class LineTracker
 	void forceStraight();
 	void update();
 	void calibrate();
+	void shake(int = 5);
 	void changeAll(int);
 	LaserModule *laser()
 	{
