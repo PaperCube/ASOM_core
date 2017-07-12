@@ -29,8 +29,7 @@ void LineTracker::host()
 
 void LineTracker::stop()
 {
-    l->setSpeed(0);
-    r->setSpeed(0);
+    changeAll(0);
 }
 
 void LineTracker::update()
@@ -98,6 +97,42 @@ void LineTracker::turnRelatively(int cnt, int speed)
     } while (lineCrossed >= cnt);
 
     stop();
+}
+
+void LineTracker::calibrate()
+{
+    changeAll(-minPower);
+    delay(500);
+    while (true)
+    {
+        bool isLBlack = isBlack(0);
+        bool isRBlack = isBlack(7);
+        if (isLBlack && isRBlack)
+        {
+            stop();
+            return;
+        }
+        else if (isLBlack || isRBlack)
+        {
+            Motor *motorToOperateOn =
+                isLBlack ? l : r;
+
+            stop();
+            motorToOperateOn->setSpeed(-minPower);
+            delay(300);
+            stop();
+        }
+        else
+        {
+            changeAll(minPower);
+        }
+    }
+}
+
+void LineTracker::changeAll(int speed)
+{
+    l->setSpeed(speed);
+    r->setSpeed(speed);
 }
 
 void LineTracker::forceStraight()

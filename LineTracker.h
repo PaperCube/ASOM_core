@@ -15,6 +15,7 @@ class LineTracker
   public:
 	double interferenceThreshold = 0.45;
 	double velocityReduction = 0.15;
+	int minPower = 50;
 
 	LineTracker(Motor *, Motor *, LaserModule *);
 	void setStandard(int, double);
@@ -25,6 +26,8 @@ class LineTracker
 	void turnRelatively(int, int = 50);
 	void forceStraight();
 	void update();
+	void calibrate();
+	void changeAll(int);
 	LaserModule *laser()
 	{
 		return lm;
