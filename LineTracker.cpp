@@ -52,10 +52,13 @@ void LineTracker::goStraight(int lines)
         {
             isOnline == true;
         }
-        if (isOnline)
+        else if (isOnline)
         {
             lineCrossed++;
+            isOnline = false;
         }
+
+        return lineCrossed >= lines;
     });
 }
 
