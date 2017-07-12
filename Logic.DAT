@@ -1,0 +1,78 @@
+cross_3_line  (not includes the line at arrival)
+turn_to_line(6)
+cross_1_line
+hold_up
+	if(now_color_on_this_way)
+	{
+		shake
+		cross_1_line
+		put_object
+	}
+	else
+	{
+		left_sweep_2_line
+		cross_1_line
+		cross_1_line_and_stop
+		//calibrate_with_line
+		shake
+		turn_to_color
+		cross_2_line
+		put_object
+	}
+go_back_for_time
+sweep_1_line  (includes the line under your car , but not includes the line at arrival)
+cross_2_line
+cross_1_line_and_stop
+turn_to_line(0)
+put_down
+cross_1_line
+hold_up
+if(now_color_on_this_way)
+	{
+		shake
+		cross_1_line
+		put_object
+	}
+	else
+	{
+		left_sweep_2_line
+		cross_1_line
+		cross_1_line_and_stop
+		//calibrate_with_line
+		shake
+		turn_to_color
+		cross_2_line
+		put_object
+	}
+go_back_for_time
+sweep_1_line
+cross_2_line
+cross_1_line_and_stop
+turn_to_line(2)
+put_down
+cross_1_line
+hold_up
+if(now_color_on_this_way)
+	{
+		shake
+		cross_1_line
+		put_object
+	}
+	else
+	{
+		left_sweep_2_line
+		cross_1_line
+		cross_1_line_and_stop
+		//calibrate_with_line
+		shake
+		turn_to_color
+		cross_2_line
+		put_object
+	}
+go_back_for_time
+sweep_1_line
+cross_2_line
+cross_1_line_and_stop
+turn_to_line(3)
+put_down
+
