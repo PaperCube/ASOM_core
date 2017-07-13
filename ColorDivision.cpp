@@ -7,6 +7,13 @@ namespace colordiv
 {
 bool mayBe(int, Hues, int);
 
+ColorDivision::ColorDivision(const int blackThreshold, const int whiteThreshold, const int colorTolerance)
+{
+    blackThres = blackThreshold;
+    whiteThres = whiteThreshold;
+    tolerance = colorTolerance;
+}
+
 ColorType ColorDivision::toColorType(ColorHSL clr)
 {
     int hue = clr.h;

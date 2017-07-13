@@ -4,12 +4,6 @@ namespace mathutil
 {
 bool inCircularRange(long value, long leftSide, long rightSide, long cycle)
 {
-    static long (*remainderToPositive)(long, long) =
-        [](long v, long remainder) -> long {
-        long offset = v % remainder;
-        return offset < 0 ? offset + remainder : offset;
-    };
-
     long rangeLength = rightSide - leftSide;
     leftSide = remainderToPositive(leftSide, cycle);
     rightSide = leftSide + rangeLength;
@@ -23,5 +17,11 @@ bool inCircularRange(long value, long leftSide, long rightSide, long cycle)
 bool inRangeInclusive(long v, const long l, const long r)
 {
     return (v >= l) && (v <= r);
+}
+
+long remainderToPositive(long value, long remainder)
+{
+    long offset = value % remainder;
+    return offset < 0 ? offset + remainder : offset;
 }
 }

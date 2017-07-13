@@ -18,12 +18,7 @@ class ColorDivision
     int blackThres, whiteThres, tolerance;
 
   public:
-    ColorDivision(const int blackThreshold = 40, const int whiteThreshold = 220, const int colorTolerance = 40)
-    {
-        blackThres = blackThreshold;
-        whiteThres = whiteThreshold;
-        tolerance = colorTolerance;
-    }
+    ColorDivision(const int blackThreshold = 40, const int whiteThreshold = 220, const int colorTolerance = 40);
 
     ColorType toColorType(ColorHSL);
 

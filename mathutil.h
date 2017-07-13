@@ -42,6 +42,8 @@ T absOf(T x)
 bool inCircularRange(long, long, long, long);
 
 bool inRangeInclusive(long, long, long);
+
+long remainderToPositive(long, long);
 }
 
 #endif

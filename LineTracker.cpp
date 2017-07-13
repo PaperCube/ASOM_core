@@ -1,19 +1,15 @@
 #include "LineTracker.h"
 #include "LaserModule.h"
 #include "sout.h"
-#include "MechanicalArm.h"
-#include "TCS3200.h"
 #include "colortypes.h"
+#include "mathutil.h"
 
 using namespace serial;
+using namespace mathutil;
 
 LineTracker::LineTracker(Motor *lmtr,
-                         Motor *rmtr,
-                         LaserModule *lmptr,
-                         MechanicalArm *arm_ptr) : l(lmtr),
-                                                   r(rmtr),
-                                                   lm(lmptr),
-                                                   arm(arm_ptr)
+                         Motor *rmtr) : l(lmtr),
+                                        r(rmtr)
 {
 }
 
@@ -27,28 +23,11 @@ void LineTracker::setStandard(int standard, double sensitivity)
 
 void LineTracker::host()
 {
-    // while (true)
-    // {
-    //     update();
-    // }
-    // stop();
-    //=======above: only track lines.
-    // colorSensor->performBalance();
-    // goStraight(3);
-    // turnRelatively(-2);
-    // goStraight(1);
-
-    // arm->grab();
-    // arm->putUp();
-    // arm->release();
-
-    // ColorType color = colorSensor->measureColor();
-    // shake();
-    // goStraight(1);
-
-    // //put object
-    // arm->putDown();
-
+    while (true)
+    {
+        update();
+    }
+    stop();
 }
 
 void LineTracker::stop()
@@ -92,10 +71,13 @@ void LineTracker::goStraight(int lines)
 
         update();
     } while (lineCrossed >= lines);
+    stop();
 }
 
 void LineTracker::turnRelatively(int cnt, int speed)
 {
+    currentDirection += cnt;
+    currentDirection %= 8;
     int directionFlag = (cnt > 0) ? 1 : -1;
     if (cnt == 0)
         return;
@@ -120,6 +102,47 @@ void LineTracker::turnRelatively(int cnt, int speed)
 
     } while (lineCrossed >= cnt);
 
+    stop();
+}
+
+void LineTracker::doUTurn(int expectedLinesToCross)
+{
+    currentDirection += 4;
+    turnRelatively(0);
+    l->setSpeed(-standard);
+    r->setSpeed(standard);
+
+    bool isOnline = false;
+    int lineCrossed = 0;
+    do
+    {
+        if (lm->isBlack(0) && lm->isBlack(7))
+        {
+            isOnline = true;
+        }
+        else if (isOnline)
+        {
+            lineCrossed++;
+            isOnline = false;
+        }
+    } while (lineCrossed >= expectedLinesToCross);
+
+    stop();
+}
+
+void LineTracker::turnAbsolutely(int dest)
+{
+    int offset = remainderToPositive(dest - currentDirection, 8);
+    if (offset > 4)
+        offset -= 8;
+
+    turnRelatively(offset);
+}
+
+void LineTracker::reverseToLine()
+{
+    changeAll(-standard);
+    while(!(lm->isBlack(0) && lm->isBlack(7)));
     stop();
 }
 
